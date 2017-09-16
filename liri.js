@@ -49,15 +49,11 @@ spotify.search({ type: 'track', query: songName}, function(err, data) {
 });
 }
 
-// if (movieName == "") {
-//         movieName = "Mr. Nobody";
-//       }
-//
-//       var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short=true&apikey=40e9cece";
-//       // console.log(queryUrl);
 
 var getMeMovie = function(movieName) {
-
+  if (movieName === undefined) {
+    movieName = "Mr Nobody";
+}
     request('http://www.omdbapi.com/?t=' + movieName + '&y=&plot=short=true&apikey=40e9cece', function(error, response, body) {
       if (!error && response.statusCode == 200) {
 
@@ -104,8 +100,10 @@ var pick = function(caseData, functionData){
         break;
       case 'movie-this':
         getMeMovie(functionData);
+        break;
       case 'do-what-it-says':
         doWhatItSays();
+        break;
     default:
       console.log('liri does not understand');
   }
